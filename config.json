@@ -1,7 +1,7 @@
 {
 
   "mongodb": {
-  	"address":"mongodb://heroku_83gh6l3f:deezudk123@ds247317.mlab.com:47317/heroku_83gh6l3f"
+  	"address":"mongodb://userdata:userdata@ds247317.mlab.com:47317/heroku_83gh6l3f"
   }
 
 }
