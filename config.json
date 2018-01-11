@@ -1,0 +1,7 @@
+{
+
+  "mongodb": {
+  	"address":"mongodb://uvfruhbt67dv6sh:MzKMHDjchIU0XY9g0nJT@br53smvrwwme5tz-mongodb.services.clever-cloud.com:27017/br53smvrwwme5tz"
+  }
+
+}

@@ -1,0 +1,174 @@
+<%layout('../layout')%>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">README.md</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+     <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="jumbotron">
+                <h1>Fastlab</h1>
+                <p>Node.js + mongoDB</p>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    
+    
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Pré requis et installation
+                </div>
+                <!-- .panel-heading -->
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion"  href="#collapseOne">Node.js</a>
+
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Télécharger <a href="https://nodejs.org/download" target="_blank">https://nodejs.org/download</a> et installez
+                                    <br/>
+                                    Depuis la ligne de commande  > node --version
+                                    <br/>
+                                    Et vérifiez votre version de node
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">mongoDB / instance locale</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Téléchargez <a href="http://www.mongodb.org/downloads?_ga=1.231428054.874147034.1427762568" target="_blank">http://www.mongodb.org/downloads</a> and install
+                                    <br/>
+                                    Créez un répertoire YOUR_MONGODB_PATH/data/db
+                                    <br/>
+                                    Et lancez la commande > YOUR_MONGODB_PATH/bin/mongod --dbpath ../data/db
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Run SB Admin 2.0 Node.js</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    npm install
+                                    <br/>
+                                    npm start
+                                    <br/>
+                                    Ouvrez votre navigateur sur http://localhost:3000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /passport/pass.js
+                </div>
+                <div class="panel-body">
+                    <p>Module d'autorisation et d'auth</p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /routes/index.js
+                </div>
+                <div class="panel-body">
+                    <p>Router pour le MVC</p>
+                </div>
+                
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /persister/user.js
+                </div>
+                <div class="panel-body">
+                    <p>Modèle Mongo pour les utilisateurs</p>
+                </div>
+                
+            </div>
+        </div>
+       
+    </div>
+    
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /config.json
+                </div>
+                <div class="panel-body">
+                    <p>Configuration MongoDB</p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /layout.ejs
+                </div>
+                <div class="panel-body">
+                    <p>Système de templating </p>
+                </div>
+                
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    /template
+                </div>
+                <div class="panel-body">
+                    <p>*.ejs UI</p>
+                </div>
+                
+            </div>
+        </div>
+        
+       
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->

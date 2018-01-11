@@ -1,0 +1,125 @@
+<%layout('../layout')%>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Détail du feed</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Date : <%= moment(feed.date).format('Do MMMM, YYYY') %></p>
+                    <p>Version : <%= feed.version %></p>                    
+                    <p>Auteur : <%= feed.auteur %></p>
+                    <p>Type : <%= feed.type %></p>
+                    <p>Description : <%= feed.description %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p><a href="#">Télécharger le retour audio</a></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-body" id="notes">
+                    <h3>Notes administrateur</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Ajouter une note</h3>
+                    <form role="form">
+                        <input type="hidden" id="feed_id" value="<%= id %>" />
+                        <p>
+                            Type de retour :
+                            <select id="type">
+                                <option value="Bug">Bug</option>
+                                <option value="Question">Question</option>
+                                <option value="Idée">Idée</option>
+                                <option value="Confirmation">Confirmation</option>
+                            </select>
+                        </p>
+                        <p>Commentaire :</p>
+                        <textarea id="commentaire"></textarea>
+                        <a href="#" id="savebbs" class="btn btn-lg btn-success btn-block">Ajouter la note</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+    </div>
+    <!-- /.row -->
+    
+    
+
+</div>
+<!-- /#page-wrapper -->
+
+<script>
+    function formatDate(date) {
+        var monthNames = [
+            "01", "02", "03",
+            "04", "05", "06", "07",
+            "08", "09", "10",
+            "11", "12"
+        ];
+
+        var tmp = new Date(date);
+
+        var day = tmp.getDate();
+        var monthIndex = tmp.getMonth();
+        var year = tmp.getFullYear();
+
+        return day + '/' + monthNames[monthIndex] + '/' + year;
+    }
+
+    function getList(){
+        $.get("/notes/list/<%= id %>"
+                  ,{}
+                  ,function(result){
+                    var tb = $('#notes');
+                    tb.html("<h3>Notes administrateur</h3>");
+                    $.each(result,function(a,b){
+                        var html ="<p>Type de retour : "+b.type+"</p>";
+                        html += "<p>"+b.texte+"</p><hr/>";
+                        tb.append(html);
+                    });
+                  })
+    }
+
+    $(document).ready(function(){
+        $('#savebbs').click(function(){
+            $.post("/note/create"
+                  ,{
+                      feed_id:$('#feed_id').val(),
+                      type:$('#type').val(),
+                      texte:$('#commentaire').val()
+                    }
+                  ,function(result){
+                    getList();
+                    alert('Note ajoutée');
+                  })
+        })
+        getList();
+    })
+</script>

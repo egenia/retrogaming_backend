@@ -1,0 +1,146 @@
+<%layout('../layout')%>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Projets</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Liste des projets</h3>
+                    <p>Mes projets</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Identifiant</th>
+                                    <th>
+                                        Libellé
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Retours
+                                    </th>
+                                    <th>
+                                        Accès
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tb">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Ajouter un projet
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>Identifiant</label>
+                                    <input class="form-control" id="identifiant">
+                                    <p class="help-block">Identifiant du projet, ex : PROJ1</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Libellé</label>
+                                    <input class="form-control" id="libelle">
+                                    <p class="help-block">Libellé du projet, ex : Top Alerte</p>
+                                </div>
+                               <div class="form-group">
+                                    <label>Description</label>
+                                    <input class="form-control" id="description">
+                                    <p class="help-block">Description du projet</p>
+                                </div>
+                                
+                                <a href="#" id="savebbs" class="btn btn-lg btn-success btn-block">Créer ce projet</a>
+                            </form>
+                        </div>
+                      
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+
+</div>
+<!-- /#page-wrapper -->
+
+<script>
+    $(document).ready(function(){
+        $('#savebbs').click(function(){
+            $.post("/projet/create"
+                  ,{
+                      identifiant:$('#identifiant').val(),
+                      libelle:$('#libelle').val(),
+                      description:$('#description').val()
+                    }
+                  ,function(result){
+                    getList();
+                  })
+        })
+        getList();
+    })
+
+
+    function getList(){
+        $.get("/projets/list"
+                  ,{}
+                  ,function(result){
+                    var tb = $('#tb');
+                    tb.html("");
+                    $.each(result,function(a,b){
+                        var html ="<tr><td>"+b.identifiant+"</td><td>"+b.libelle+"</td><td>"+b.description+"</td><td>"+b.nbfeeds+"</td><td>"+"Utilisateur"+"</td><td><a href='/projet/"+b._id+"'>Consulter</a></td></tr>";
+                        tb.append(html);
+                    });
+                    $("#tb").each(function(e) {
+                        console.log(e);
+                    });
+                    $('table').dataTable({
+                        responsive: true
+                    });
+                  })
+    }
+
+    function delBbs(id){
+         $.post("/bbs/delete"
+                  ,{id:id}
+                  ,function(result){
+                    getList();
+              })
+    }
+    function vote(id){
+         $.post("/bbs/update"
+                  ,{id:id}
+                  ,function(result){
+                    getList();
+              })
+    }
+</script>
+<script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
